@@ -1,29 +1,23 @@
 #include"../includes/Fixed.hpp"
 
  Fixed::Fixed():_value(0){
-    std::cout << "Default constructor called" << std::endl;
  }
 
 Fixed::Fixed(int const value):_value(value << _bits){
-   std::cout << "Int constructor called" << std::endl;
 }
 
 Fixed::Fixed(float const value){
-   std::cout << "Float constructor called" << std::endl;
-   _value = static_cast<int>(value * (1 << _bits));
+   _value = roundf(value * (1 << _bits));
 }
 
  Fixed::Fixed(const Fixed &obj){
-    std::cout << "Copy constructor called" << std::endl;
     *this = obj;
  }
 
 Fixed::~Fixed(){
-   std::cout << "Destructor called" << std::endl;
 }
 
 Fixed &Fixed::operator=(const Fixed &obj){
-   std::cout << "Copy assignment operator called" << std::endl;
    this->_value = obj.getRawBits();
    return (*this);
 }
@@ -72,8 +66,58 @@ Fixed Fixed::operator+(Fixed const &obj) const{
    return (this->toFloat() + obj.toFloat());
 }
 
-std::ostream &operator<<(std::ostream &o, const Fixed &rhs){
-   o << rhs.toFloat();
-   return o;
+Fixed Fixed::operator-(Fixed const &obj) const{
+   return (this->toFloat() - obj.toFloat());
+}
+
+Fixed Fixed::operator*(Fixed const &obj) const{
+   return (this->toFloat() * obj.toFloat());
+}
+
+Fixed Fixed::operator/(Fixed const &obj) const{
+   return (this->toFloat() / obj.toFloat());
+}
+
+Fixed Fixed::operator++(int){
+   Fixed a(*this);
+   operator++();
+   return a;
+}
+
+Fixed Fixed::operator--(int){
+   Fixed a(*this);
+   operator--();
+   return a;  
+}
+
+Fixed &Fixed::operator++(){
+   ++this->_value;
+   return *this;
+}
+
+Fixed &Fixed::operator--(){
+   --this->_value;
+   return *this;
+}
+
+Fixed Fixed::max(Fixed &a, Fixed &b){
+   return (a > b) ? a : b;
+}
+
+const Fixed Fixed::max(Fixed const &a, Fixed const &b){
+   return (a > b) ? a : b;
+}
+
+Fixed Fixed::min(Fixed &a, Fixed &b){
+   return (a < b) ? a : b;
+}
+
+const Fixed Fixed::min(const Fixed &a, const Fixed &b){
+   return (a < b) ? a : b;
+}
+
+std::ostream &operator<<(std::ostream &a, const Fixed &b){
+   a << b.toFloat();
+   return a;
 }
 

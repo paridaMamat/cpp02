@@ -4,10 +4,6 @@
     std::cout << "Default constructor called" << std::endl;
  }
 
-Fixed::Fixed(int const value):_value(value){
-   std::cout << "Surcharger constructor called" << std::endl;
-}
-
  Fixed::Fixed(const Fixed &obj){
     std::cout << "Copy constructor called" << std::endl;
     *this = obj;

@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <string>
+#include <cmath>
 
 class Fixed
 {
@@ -21,7 +22,7 @@ class Fixed
     Fixed (const Fixed &obj);
     Fixed &operator = (const Fixed &obj);
 
-    int getRawBits() const;
+    int     getRawBits() const;
     void    setRawBits(int const raw);
     float   toFloat() const;
     int		toInt(void) const;

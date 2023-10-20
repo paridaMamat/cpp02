@@ -10,7 +10,7 @@ Fixed::Fixed(int const value):_value(value << _bits){
 
 Fixed::Fixed(float const value){
    std::cout << "Float constructor called" << std::endl;
-   _value = static_cast<int>(value * (1 << _bits));
+   _value = roundf(value * (1 << _bits));
 }
 
  Fixed::Fixed(const Fixed &obj){
