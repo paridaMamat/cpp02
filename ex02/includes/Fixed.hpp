@@ -45,12 +45,12 @@ class Fixed
     Fixed   &operator++();
     Fixed   &operator--();
 
-    static Fixed min(Fixed &a, Fixed &b);
-    static const Fixed min(Fixed const &a, Fixed const &b);
-    static Fixed max(Fixed &a, Fixed &b);
-    static const Fixed max(Fixed const &a, Fixed const &b);
+    static Fixed &min(Fixed &a, Fixed &b);
+    static const Fixed &min(Fixed const &a, Fixed const &b);
+    static Fixed &max(Fixed &a, Fixed &b);
+    static const Fixed &max(Fixed const &a, Fixed const &b);
 
 };
 
-std::ostream &operator<<(std::ostream &o, Fixed const &rhs);
+std::ostream &operator<<(std::ostream &out, Fixed const &fixed);
 #endif

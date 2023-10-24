@@ -41,10 +41,10 @@ float Fixed::toFloat() const {
 }
 
 int Fixed::toInt() const{
-	return (static_cast<int>(this->getRawBits()) >> _bits);
+	return ((this->getRawBits()) >> _bits);
 }
 
-std::ostream &operator<<(std::ostream &o, const Fixed &rhs){
-   o << rhs.toFloat();
-   return o;
+std::ostream &operator<<(std::ostream &out, const Fixed &fixed){
+   out << fixed.toFloat();
+   return out;
 }
